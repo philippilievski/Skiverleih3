@@ -30,7 +30,6 @@ namespace Skiverleih3
             InitializeComponent();
             dgHistory.ItemsSource = dataClass.GetHistoryCustomerItems();
             dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
-            dgItems.ItemsSource = dataClass.GetItems();
             cmbBoxItem.ItemsSource = dataClass.GetItems();
             cmbBoxCustomer.ItemsSource = dataClass.GetCustomers();
         }
@@ -41,46 +40,44 @@ namespace Skiverleih3
             if(skiAlreadyLent)
             {
                 MessageBox.Show("Dieser Ski wurde bereits ausgeliehen! Warten Sie bis der Besitzer ihn zurückgibt.");
+                return;
             }
             else
             {
                 dataClass.AddHistoryEntry((Customer)cmbBoxCustomer.SelectedItem, (Item)cmbBoxItem.SelectedItem);
             }
             dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
-        }
-
-        private void btnDel_Click(object sender, RoutedEventArgs e)
-        {
-            bool itemIsLent;
-            if (dgItems.SelectedItem == null)
-            {
-                MessageBox.Show("Bitte wählen sie in der Tabelle ein Ski aus!");
-            }
-            else
-            {
-                itemIsLent = dataClass.ReturnItem((Item)dgItems.SelectedItem);
-                if(itemIsLent)
-                {
-                    MessageBox.Show("Dieser Ski kann nicht zurückgegeben werden da er gar nicht ausgeliehen wurde.");
-                }
-                else
-                {
-                    dataClass.AddReturnDateOnHistory((Item)dgItems.SelectedItem);
-                }
-            }
-            dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
+            dgHistory.ItemsSource = dataClass.GetHistoryCustomerItems();
         }
 
         private void txtBoxSearchForCustomer_TextChanged(object sender, TextChangedEventArgs e)
         {
+            /*
             var items = dataClass.GetItems();
             var filter = items.Where(items => items.Title.StartsWith(txtBoxSearchForCustomer.Text, StringComparison.CurrentCultureIgnoreCase));
             dgItems.ItemsSource = filter;
+            */
         }
 
-        private void btnReturnHistory_Click(object sender, RoutedEventArgs e)
+        private void btnRet_Click(object sender, RoutedEventArgs e)
         {
 
+            if(cmbBoxItem.SelectedItem == null || cmbBoxCustomer.SelectedItem == null)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Kunden und einen Ski aus!");
+                return;
+            }
+
+            if(dataClass.AddReturnDateOnHistory((Customer)cmbBoxCustomer.SelectedItem, (Item)cmbBoxItem.SelectedItem))
+            {
+                if(dataClass.ReturnItem((Item)cmbBoxItem.SelectedItem))
+                {
+                    MessageBox.Show("Dieser Ski kann nicht zurückgegeben werden da er gar nicht ausgeliehen wurde.");
+                    return;
+                }
+            }
+            dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
+            dgHistory.ItemsSource = dataClass.GetHistoryCustomerItems();
         }
     }
 }

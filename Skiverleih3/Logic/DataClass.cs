@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Collections;
+using System.Windows;
 
 namespace Skiverleih3.Logic
 {
@@ -66,15 +67,32 @@ namespace Skiverleih3.Logic
             skiverleihContext.SaveChanges();
         }
 
-        public void AddReturnDateOnHistory(Item item)
+        public bool AddReturnDateOnHistory(Customer customer, Item item)
         {
-            var hist = skiverleihContext.Histories
+            bool itemReturned = false;
+            try
+            {
+                var hist = skiverleihContext.Histories
                 .Where(i => i.ItemID == item.ItemID)
+                .Where(c => c.CustomerID == customer.CustomerID)
+                .Where(y => y.ReturnedOn == DateTime.MinValue)
                 .First();
 
-            hist.ReturnedOn = DateTime.Now;
-            skiverleihContext.Update(hist);
-            skiverleihContext.SaveChanges();
+                if(hist != null)
+                {
+                    hist.ReturnedOn = DateTime.Now;
+                    skiverleihContext.Update(hist);
+                    skiverleihContext.SaveChanges();
+                }
+                itemReturned = true;
+            }
+            catch (Exception e)
+            {
+                itemReturned = false;
+                MessageBox.Show(e.Message);
+            }
+
+            return itemReturned;
         }
 
 

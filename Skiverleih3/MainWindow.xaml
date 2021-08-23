@@ -55,31 +55,19 @@
                     Click="btnAdd_Click">
                     Add
                 </Button>
+                <Button
+                    Name="btnRet"
+                    Width="75"
+                    Height="20"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    Click="btnRet_Click">
+                    Return
+                </Button>
             </WrapPanel>
             <DataGrid
-                Name="dgItems"
-                Width="200"
-                Height="75"
-                HorizontalAlignment="Left"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
-                    <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
-                    <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button
-                Name="btnDel"
-                Width="50"
-                Height="20"
-                HorizontalAlignment="Left"
-                Click="btnDel_Click">
-                Return
-            </Button>
-            <DataGrid
                 Name="dgHistory"
-                Height="100"
+                Height="200"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False">
                 <DataGrid.Columns>
@@ -94,8 +82,7 @@
             <Button
                 Name="btnReturnHistory"
                 Width="50"
-                HorizontalAlignment="Left"
-                Click="btnReturnHistory_Click">
+                HorizontalAlignment="Left">
                 Return
             </Button>
         </StackPanel>
