@@ -17,6 +17,7 @@
             <TextBox Name="txtBoxSearchForCustomer" TextChanged="txtBoxSearchForCustomer_TextChanged" />
             <DataGrid
                 Name="dgItemLentToCustomer"
+                Height="100"
                 AutoGenerateColumns="False"
                 CanUserDeleteRows="False">
                 <DataGrid.Columns>
@@ -50,7 +51,6 @@
                     Name="btnAdd"
                     Width="75"
                     Height="20"
-                    Margin="10,60"
                     HorizontalAlignment="Center"
                     Click="btnAdd_Click">
                     Add
@@ -58,13 +58,15 @@
             </WrapPanel>
             <DataGrid
                 Name="dgItems"
-                Width="150"
+                Width="200"
+                Height="75"
                 HorizontalAlignment="Left"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
                     <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
+                    <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
                 </DataGrid.Columns>
             </DataGrid>
             <Button
@@ -73,6 +75,27 @@
                 Height="20"
                 HorizontalAlignment="Left"
                 Click="btnDel_Click">
+                Return
+            </Button>
+            <DataGrid
+                Name="dgHistory"
+                Height="100"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding HistoryID}" Header="HistoryID" />
+                    <DataGridTextColumn Binding="{Binding FirstName}" Header="Firstname" />
+                    <DataGridTextColumn Binding="{Binding LastName}" Header="Lastname" />
+                    <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
+                    <DataGridTextColumn Binding="{Binding LoanedOn}" Header="Loaned on" />
+                    <DataGridTextColumn Binding="{Binding ReturnedOn}" Header="Returned on" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button
+                Name="btnReturnHistory"
+                Width="50"
+                HorizontalAlignment="Left"
+                Click="btnReturnHistory_Click">
                 Return
             </Button>
         </StackPanel>

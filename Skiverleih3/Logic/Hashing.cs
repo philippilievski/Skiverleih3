@@ -38,7 +38,6 @@ namespace Skiverleih3.Logic
                 isCorrect = true;
             }
             return isCorrect;
-
         }
 
     }

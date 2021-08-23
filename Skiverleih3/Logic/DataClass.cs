@@ -14,6 +14,10 @@ namespace Skiverleih3.Logic
     {
         SkiverleihContext skiverleihContext = new SkiverleihContext();
 
+        /// <summary>
+        /// Function joins two tables Items and Customers and writes queried data into a table
+        /// </summary>
+        /// <returns>IEnumberable</returns>
         public IEnumerable<object> GetItemsAndCustomers()
         {
             var customerItems = (from item in skiverleihContext.Items
@@ -22,6 +26,16 @@ namespace Skiverleih3.Logic
                          select new { customer.CustomerID, customer.FirstName, customer.LastName, item.ItemID, item.Title, item.State}).ToList();
 
             return customerItems;
+        }
+
+        public IEnumerable<object> GetHistoryCustomerItems()
+        {
+            var historycustomeritem = (from history in skiverleihContext.Histories
+                                       join customer in skiverleihContext.Customers on history.CustomerID equals customer.CustomerID
+                                       join item in skiverleihContext.Items on history.ItemID equals item.ItemID
+                                       select new { history.HistoryID, customer.FirstName, customer.LastName, item.Title, history.LoanedOn, history.ReturnedOn }).ToList();
+
+            return historycustomeritem;
         }
 
         public List<Item> GetItems()
@@ -40,6 +54,36 @@ namespace Skiverleih3.Logic
             return customers;
         }
 
+        public void AddHistoryEntry(Customer customer, Item item)
+        {
+            var HiEnt = new History()
+            {
+                CustomerID = customer.CustomerID,
+                ItemID = item.ItemID,
+                LoanedOn = DateTime.Now
+            };
+            skiverleihContext.Histories.Add(HiEnt);
+            skiverleihContext.SaveChanges();
+        }
+
+        public void AddReturnDateOnHistory(Item item)
+        {
+            var hist = skiverleihContext.Histories
+                .Where(i => i.ItemID == item.ItemID)
+                .First();
+
+            hist.ReturnedOn = DateTime.Now;
+            skiverleihContext.Update(hist);
+            skiverleihContext.SaveChanges();
+        }
+
+
+        /// <summary>
+        /// Assigns Item to Customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="item"></param>
+        /// <returns>Returns true if Item can be assigned. Returns false if item can not be assigned.</returns>
         public bool LendItemToCustomer(Customer customer, Item item)
         {
             bool isNull;
@@ -58,6 +102,11 @@ namespace Skiverleih3.Logic
             return isNull;
         }
 
+        /// <summary>
+        /// Dismisses item from Customer
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>Returns true if item can be dismissed. Returns false if item can not be dismissed.</returns>
         public bool ReturnItem(Item item)
         {
             bool isNull;

@@ -2,6 +2,7 @@
 using Skiverleih3.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace Skiverleih3
         public MainWindow()
         {
             InitializeComponent();
+            dgHistory.ItemsSource = dataClass.GetHistoryCustomerItems();
             dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
             dgItems.ItemsSource = dataClass.GetItems();
             cmbBoxItem.ItemsSource = dataClass.GetItems();
@@ -39,6 +41,10 @@ namespace Skiverleih3
             if(skiAlreadyLent)
             {
                 MessageBox.Show("Dieser Ski wurde bereits ausgeliehen! Warten Sie bis der Besitzer ihn zurückgibt.");
+            }
+            else
+            {
+                dataClass.AddHistoryEntry((Customer)cmbBoxCustomer.SelectedItem, (Item)cmbBoxItem.SelectedItem);
             }
             dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
         }
@@ -57,6 +63,10 @@ namespace Skiverleih3
                 {
                     MessageBox.Show("Dieser Ski kann nicht zurückgegeben werden da er gar nicht ausgeliehen wurde.");
                 }
+                else
+                {
+                    dataClass.AddReturnDateOnHistory((Item)dgItems.SelectedItem);
+                }
             }
             dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
         }
@@ -66,6 +76,11 @@ namespace Skiverleih3
             var items = dataClass.GetItems();
             var filter = items.Where(items => items.Title.StartsWith(txtBoxSearchForCustomer.Text, StringComparison.CurrentCultureIgnoreCase));
             dgItems.ItemsSource = filter;
+        }
+
+        private void btnReturnHistory_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

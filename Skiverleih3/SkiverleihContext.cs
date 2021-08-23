@@ -21,5 +21,6 @@ namespace Skiverleih3
         public DbSet<Adress> Adresses { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<History> Histories { get; set; }
     }
 }

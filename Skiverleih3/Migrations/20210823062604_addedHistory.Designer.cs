@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Skiverleih3;
 
 namespace Skiverleih3.Migrations
 {
     [DbContext(typeof(SkiverleihContext))]
-    partial class SkiverleihContextModelSnapshot : ModelSnapshot
+    [Migration("20210823062604_addedHistory")]
+    partial class addedHistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
