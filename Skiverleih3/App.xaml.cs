@@ -15,8 +15,18 @@ namespace Skiverleih3
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            LoginScreen loginScreen = new LoginScreen();
+            /*
+            DataWindow dataWindow = new DataWindow();
+            dataWindow.Show();
+            */
+            /*
+            MainWindow window = new();
+            window.Show();
+            */
+            
+            LoginScreen loginScreen = new();
             loginScreen.Show();
+            
         }
     }
 }

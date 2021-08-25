@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Skiverleih3.Model
 {
-    class Customer
+    public class Customer
     {
         [Key]
         public int CustomerID { get; set; }

@@ -13,18 +13,19 @@ namespace Skiverleih3.Logic
 {
     class DataClass
     {
-        SkiverleihContext skiverleihContext = new SkiverleihContext();
+        SkiverleihContext skiverleihContext = new();
 
         /// <summary>
         /// Function joins two tables Items and Customers and writes queried data into a table
         /// </summary>
         /// <returns>IEnumberable</returns>
-        public IEnumerable<object> GetItemsAndCustomers()
+        public List<CustomerItems> GetItemsAndCustomers()
         {
-            var customerItems = (from item in skiverleihContext.Items
-                         join customer in skiverleihContext.Customers on item.CustomerID equals customer.CustomerID
-                         join state in skiverleihContext.States on item.StateID equals state.StateID
-                         select new { customer.CustomerID, customer.FirstName, customer.LastName, item.ItemID, item.Title, item.State}).ToList();
+            List<CustomerItems> customerItems = (from item in skiverleihContext.Items
+                                           join customer in skiverleihContext.Customers on item.CustomerID equals customer.CustomerID
+                                           join state in skiverleihContext.States on item.StateID equals state.StateID
+                                           select new CustomerItems { CustomerID = customer.CustomerID, FirstName = customer.FirstName, 
+                                               LastName = customer.LastName, ItemID = item.ItemID, Title = item.Title, State = item.State }).ToList();
 
             return customerItems;
         }
@@ -53,6 +54,18 @@ namespace Skiverleih3.Logic
                 .ToList();
 
             return customers;
+        }
+
+        public void ChangeCustomer(Customer customer)
+        {
+            skiverleihContext.Update(customer);
+            skiverleihContext.SaveChanges();
+        }
+
+        public void ChangeItem(Item item)
+        {
+            skiverleihContext.Update(item);
+            skiverleihContext.SaveChanges();
         }
 
         public void AddHistoryEntry(Customer customer, Item item)

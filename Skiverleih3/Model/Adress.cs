@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Skiverleih3.Model
 {
-    class Adress
+    public class Adress
     {
         [Key]
         public int AdressID { get; set; }

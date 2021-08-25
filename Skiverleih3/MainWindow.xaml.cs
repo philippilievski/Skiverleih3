@@ -2,6 +2,7 @@
 using Skiverleih3.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -23,8 +24,8 @@ namespace Skiverleih3
     /// </summary>
     public partial class MainWindow : Window
     {
-        DataClass dataClass = new DataClass();
-        SkiverleihContext skiverleihContext = new SkiverleihContext();
+        DataClass dataClass = new();
+        SkiverleihContext skiverleihContext = new();
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace Skiverleih3
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             bool skiAlreadyLent = dataClass.LendItemToCustomer((Customer)cmbBoxCustomer.SelectedItem, (Item)cmbBoxItem.SelectedItem);
-            if(skiAlreadyLent)
+            if (skiAlreadyLent)
             {
                 MessageBox.Show("Dieser Ski wurde bereits ausgeliehen! Warten Sie bis der Besitzer ihn zurückgibt.");
                 return;
@@ -52,23 +53,21 @@ namespace Skiverleih3
 
         private void txtBoxSearchForCustomer_TextChanged(object sender, TextChangedEventArgs e)
         {
-            /*
             var items = dataClass.GetItems();
             var filter = items.Where(items => items.Title.StartsWith(txtBoxSearchForCustomer.Text, StringComparison.CurrentCultureIgnoreCase));
-            dgItems.ItemsSource = filter;
-            */
+            dgHistory.ItemsSource = filter;
         }
 
         private void btnRet_Click(object sender, RoutedEventArgs e)
         {
 
-            if(cmbBoxItem.SelectedItem == null || cmbBoxCustomer.SelectedItem == null)
+            if (cmbBoxItem.SelectedItem == null || cmbBoxCustomer.SelectedItem == null)
             {
                 MessageBox.Show("Bitte wählen Sie einen Kunden und einen Ski aus!");
                 return;
             }
 
-            if(dataClass.AddReturnDateOnHistory((Customer)cmbBoxCustomer.SelectedItem, (Item)cmbBoxItem.SelectedItem))
+            if (dataClass.AddReturnDateOnHistory((Customer)cmbBoxCustomer.SelectedItem, (Item)cmbBoxItem.SelectedItem))
             {
                 if(dataClass.ReturnItem((Item)cmbBoxItem.SelectedItem))
                 {
@@ -78,6 +77,32 @@ namespace Skiverleih3
             }
             dgItemLentToCustomer.ItemsSource = dataClass.GetItemsAndCustomers();
             dgHistory.ItemsSource = dataClass.GetHistoryCustomerItems();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            EditCustomer edit = new EditCustomer((CustomerItems)dgItemLentToCustomer.SelectedItem);
+            this.Hide();
+            edit.Show();
+            */
+        }
+
+        private void dgItemLentToCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*
+            object item = dgItemLentToCustomer.SelectedItem;
+            string blub = (dgItemLentToCustomer.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            Trace.WriteLine(blub);
+            */
+            CustomerItems customeritems = (CustomerItems)dgItemLentToCustomer.SelectedItem;
+            Trace.Write(customeritems.ItemID);
+            Trace.WriteLine(dgItemLentToCustomer.SelectedItem);
+        }
+
+        private void btnEditCust_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

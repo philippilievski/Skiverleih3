@@ -20,6 +20,9 @@
             <Setter Property="Background" Value="#2E2E2E" />
             <Setter Property="Title" Value="Programm" />
         </Style>
+        <Style TargetType="local:EditCustomersWindow">
+            <Setter Property="Background" Value="#2E2E2E" />
+        </Style>
 
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="White" />

@@ -8,6 +8,7 @@
     Title="MainWindow"
     Width="800"
     Height="450"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
         <StackPanel>
@@ -19,7 +20,8 @@
                 Name="dgItemLentToCustomer"
                 Height="100"
                 AutoGenerateColumns="False"
-                CanUserDeleteRows="False">
+                CanUserDeleteRows="False"
+                SelectionChanged="dgItemLentToCustomer_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
                     <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
@@ -29,13 +31,22 @@
                     <DataGridTextColumn Binding="{Binding State.Title}" Header="State" />
                 </DataGrid.Columns>
             </DataGrid>
+            <Button
+                Name="btnEdit"
+                Width="75"
+                Height="20"
+                Margin="10"
+                HorizontalAlignment="Center"
+                Click="btnEdit_Click">
+                Edit
+            </Button>
             <WrapPanel>
                 <Label Height="25">Customer:</Label>
                 <ComboBox
                     Name="cmbBoxCustomer"
                     Width="150"
                     Height="20"
-                    Margin="10"
+                    Margin="5"
                     HorizontalAlignment="Left"
                     DisplayMemberPath="FirstName"
                     SelectedValuePath="CustomerID" />
@@ -44,14 +55,16 @@
                     Name="cmbBoxItem"
                     Width="150"
                     Height="20"
-                    Margin="10"
+                    Margin="5"
                     DisplayMemberPath="Title"
                     SelectedValuePath="ItemID" />
                 <Button
                     Name="btnAdd"
                     Width="75"
                     Height="20"
+                    Margin="5"
                     HorizontalAlignment="Center"
+                    Background="#ff6961"
                     Click="btnAdd_Click">
                     Add
                 </Button>
@@ -61,6 +74,7 @@
                     Height="20"
                     Margin="10"
                     HorizontalAlignment="Center"
+                    Background="#ff6961"
                     Click="btnRet_Click">
                     Return
                 </Button>
@@ -79,12 +93,6 @@
                     <DataGridTextColumn Binding="{Binding ReturnedOn}" Header="Returned on" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button
-                Name="btnReturnHistory"
-                Width="50"
-                HorizontalAlignment="Left">
-                Return
-            </Button>
         </StackPanel>
     </Grid>
 </Window>

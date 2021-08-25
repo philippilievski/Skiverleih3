@@ -36,7 +36,7 @@ namespace Skiverleih3
             pwHash = Hashing.Compute256Hash(txtBoxPassword.Password);
             if(Hashing.Validation(username, pwHash))
             {
-                MainWindow mainWindow = new MainWindow();
+                DataWindow mainWindow = new();
                 this.Hide();
                 mainWindow.Show();
             }
