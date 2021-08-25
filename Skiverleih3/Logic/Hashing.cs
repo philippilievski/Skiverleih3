@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Skiverleih3.Logic
 {
@@ -11,7 +8,7 @@ namespace Skiverleih3.Logic
     {
         public static string Compute256Hash(string rawData)
         {
-            using(SHA256 sha256Hash = SHA256.Create())
+            using (SHA256 sha256Hash = SHA256.Create())
             {
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
 
@@ -33,7 +30,7 @@ namespace Skiverleih3.Logic
                 .Where(s => s.PasswordHash == passwordHash)
                 .Count();
 
-            if(passwordandusername == 1)
+            if (passwordandusername == 1)
             {
                 isCorrect = true;
             }

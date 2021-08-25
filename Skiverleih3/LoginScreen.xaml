@@ -11,25 +11,45 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <StackPanel Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Bottom">
+            <TextBlock HorizontalAlignment="Center" Foreground="White">
+                Username
+            </TextBlock>
             <TextBox
                 Name="txtBoxUsername"
                 Width="150"
-                Margin="5" />
-            <PasswordBox
-                Name="txtBoxPassword"
-                Width="150"
-                Margin="5"
-                HorizontalAlignment="Center" />
-            <Button
-                Name="btnLogin"
-                Width="75"
-                Height="25"
                 Margin="5"
                 HorizontalAlignment="Center"
-                Click="btnLogin_Click">
-                Login
-            </Button>
+                VerticalAlignment="Bottom" />
         </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" Foreground="White">
+                Password
+            </TextBlock>
+            <PasswordBox
+                Name="txtBoxPassword"
+                Grid.Row="1"
+                Width="150"
+                Margin="5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+        </StackPanel>
+        <Button
+            Name="btnLogin"
+            Grid.Row="2"
+            Width="75"
+            Height="25"
+            Margin="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Click="btnLogin_Click"
+            IsDefault="True">
+            Login
+        </Button>
     </Grid>
 </Window>

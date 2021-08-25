@@ -16,7 +16,6 @@
         <Style TargetType="local:LoginScreen">
             <Setter Property="Background" Value="#2E2E2E" />
             <Setter Property="Title" Value="Programm" />
-            <Setter Property="WindowStyle" Value="None" />
         </Style>
         <Style TargetType="local:MainWindow">
             <Setter Property="Background" Value="#2E2E2E" />
@@ -30,11 +29,12 @@
         </Style>
         <Style TargetType="local:StartupScreen">
             <Setter Property="Background" Value="#2E2E2E" />
-            <Setter Property="WindowStyle" Value="None" />
         </Style>
         <Style TargetType="local:DataWindow">
             <Setter Property="Background" Value="#2E2E2E" />
-            <Setter Property="WindowStyle" Value="None" />
+        </Style>
+        <Style TargetType="local:Add">
+            <Setter Property="Background" Value="#2E2E2E" />
         </Style>
 
 

@@ -19,21 +19,30 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
-        <DataGrid
-            Name="dgItemLentToCustomer"
-            Height="100"
-            AutoGenerateColumns="False"
-            CanUserDeleteRows="False"
-            SelectionChanged="dgItemLentToCustomer_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
-                <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
-                <DataGridTextColumn Binding="{Binding LastName}" Header="Last name" />
-                <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
-                <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
-                <DataGridTextColumn Binding="{Binding State.Title}" Header="State" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel>
+            <Button
+                Name="btnBackToMainMenu"
+                Width="50"
+                HorizontalAlignment="Left"
+                Click="btnBackToMainMenu_Click">
+                Back;
+            </Button>
+            <TextBlock Foreground="White">Loan List</TextBlock>
+            <DataGrid
+                Name="dgItemLentToCustomer"
+                AutoGenerateColumns="False"
+                CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
+                    <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
+                    <DataGridTextColumn Binding="{Binding LastName}" Header="Last name" />
+                    <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
+                    <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
+                    <DataGridTextColumn Binding="{Binding State.Title}" Header="State" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <GridSplitter Grid.Column="0" Width="5" />
         <WrapPanel
             Grid.Column="1"
             HorizontalAlignment="Center"
@@ -62,9 +71,8 @@
                 Grid.Column="1"
                 Width="75"
                 Height="20"
-                Margin="5"
+                Margin="100,0"
                 HorizontalAlignment="Center"
-                Background="#ff6961"
                 Click="btnAdd_Click">
                 Add
             </Button>
@@ -75,36 +83,26 @@
                 Height="20"
                 Margin="10"
                 HorizontalAlignment="Center"
-                Background="#ff6961"
                 Click="btnRet_Click">
                 Return
             </Button>
-            <Button
-                Name="btnEdit"
-                Grid.Column="1"
-                Width="75"
-                Height="20"
-                Margin="10"
-                HorizontalAlignment="Center"
-                Click="btnEdit_Click">
-                Edit
-            </Button>
         </WrapPanel>
-        <DataGrid
-            Name="dgHistory"
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Height="200"
-            AutoGenerateColumns="False"
-            CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding HistoryID}" Header="HistoryID" />
-                <DataGridTextColumn Binding="{Binding FirstName}" Header="Firstname" />
-                <DataGridTextColumn Binding="{Binding LastName}" Header="Lastname" />
-                <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
-                <DataGridTextColumn Binding="{Binding LoanedOn}" Header="Loaned on" />
-                <DataGridTextColumn Binding="{Binding ReturnedOn}" Header="Returned on" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <Label>Loan History</Label>
+            <DataGrid
+                Name="dgHistory"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding HistoryID}" Header="HistoryID" />
+                    <DataGridTextColumn Binding="{Binding FirstName}" Header="Firstname" />
+                    <DataGridTextColumn Binding="{Binding LastName}" Header="Lastname" />
+                    <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
+                    <DataGridTextColumn Binding="{Binding LoanedOn}" Header="Loaned on" />
+                    <DataGridTextColumn Binding="{Binding ReturnedOn}" Header="Returned on" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
     </Grid>
 </Window>
