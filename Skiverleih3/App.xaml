@@ -9,13 +9,15 @@
             <Setter Property="Background" Value="#444444" />
             <Setter Property="Foreground" Value="White" />
         </Style>
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="#2E2E2E" />
+        </Style>
 
         <Style TargetType="local:LoginScreen">
             <Setter Property="Background" Value="#2E2E2E" />
             <Setter Property="Title" Value="Programm" />
             <Setter Property="WindowStyle" Value="None" />
         </Style>
-
         <Style TargetType="local:MainWindow">
             <Setter Property="Background" Value="#2E2E2E" />
             <Setter Property="Title" Value="Programm" />
@@ -23,6 +25,18 @@
         <Style TargetType="local:EditCustomersWindow">
             <Setter Property="Background" Value="#2E2E2E" />
         </Style>
+        <Style TargetType="local:EditItemsWindow">
+            <Setter Property="Background" Value="#2E2E2E" />
+        </Style>
+        <Style TargetType="local:StartupScreen">
+            <Setter Property="Background" Value="#2E2E2E" />
+            <Setter Property="WindowStyle" Value="None" />
+        </Style>
+        <Style TargetType="local:DataWindow">
+            <Setter Property="Background" Value="#2E2E2E" />
+            <Setter Property="WindowStyle" Value="None" />
+        </Style>
+
 
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="White" />
@@ -34,5 +48,6 @@
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Background" Value="#627D98" />
         </Style>
+
     </Application.Resources>
 </Application>

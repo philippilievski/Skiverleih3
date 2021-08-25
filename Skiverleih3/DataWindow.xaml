@@ -11,67 +11,75 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <WrapPanel>
-            <StackPanel Background="#444444">
-                <Label Margin="5,0" Background="#232323">Kunden</Label>
-                <DataGrid
-                    Name="dgCustomers"
-                    Width="375"
-                    Height="150"
-                    Margin="5,10"
-                    AutoGenerateColumns="False"
-                    CanUserDeleteRows="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
-                        <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
-                        <DataGridTextColumn Binding="{Binding LastName}" Header="Last name" />
-                        <DataGridTextColumn Binding="{Binding Telephonenumber}" Header="Tel Nr." />
-                        <DataGridTextColumn Binding="{Binding DateOfBirth}" Header="Date of birth" />
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button
-                    Name="btnCustomerEdit"
-                    Width="100"
-                    Height="20"
-                    Margin="0,5"
-                    HorizontalAlignment="Center"
-                    Click="btnCustomerEdit_Click">
-                    Edit
-                </Button>
-            </StackPanel>
-            <StackPanel Background="#444444">
-                <Label Margin="5,0" Background="#232323">Ski</Label>
-                <DataGrid
-                    Name="dgItems"
-                    Width="375"
-                    Height="150"
-                    Margin="10,10"
-                    AutoGenerateColumns="False"
-                    CanUserDeleteRows="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
-                        <DataGridTextColumn Binding="{Binding Title}" Header="Title" />
-                        <DataGridTextColumn Binding="{Binding Price}" Header="Price" />
-                        <DataGridTextColumn Binding="{Binding Lendcount}" Header="Lendcount" />
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button
-                    Name="btnItemEdit"
-                    Width="100"
-                    Height="20"
-                    Margin="0,5"
-                    HorizontalAlignment="Center"
-                    Click="btnItemEdit_Click">
-                    Edit
-                </Button>
-            </StackPanel>
-        </WrapPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <DataGrid
+            Name="dgCustomers"
+            Grid.Column="0"
+            Width="250"
+            Height="150"
+            Margin="5,10"
+            AutoGenerateColumns="False"
+            CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Last name" />
+                <DataGridTextColumn Binding="{Binding Telephonenumber}" Header="Tel Nr." />
+                <DataGridTextColumn Binding="{Binding DateOfBirth}" Header="Date of birth" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Name="btnCustomerEdit"
+            Grid.Row="1"
+            Width="100"
+            Height="20"
+            Margin="0,5"
+            HorizontalAlignment="Center"
+            Click="btnCustomerEdit_Click">
+            Edit
+        </Button>
+        <DataGrid
+            Name="dgItems"
+            Grid.Column="1"
+            Width="250"
+            Height="150"
+            Margin="10,10"
+            AutoGenerateColumns="False"
+            CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
+                <DataGridTextColumn Binding="{Binding Title}" Header="Title" />
+                <DataGridTextColumn Binding="{Binding Price}" Header="Price" />
+                <DataGridTextColumn Binding="{Binding Lendcount}" Header="Lendcount" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Name="btnItemEdit"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="100"
+            Height="20"
+            Margin="0,5"
+            HorizontalAlignment="Center"
+            Click="btnItemEdit_Click">
+            Edit
+        </Button>
         <Button
             Name="btnToMainWindow"
-            Width="150"
-            Height="25"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="100"
+            Height="20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             Click="btnToMainWindow_Click">
             Next-&gt;
         </Button>

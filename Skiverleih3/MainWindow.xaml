@@ -11,28 +11,77 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <StackPanel>
-            <Label Width="70" HorizontalAlignment="Left">
-                Verleih
-            </Label>
-            <TextBox Name="txtBoxSearchForCustomer" TextChanged="txtBoxSearchForCustomer_TextChanged" />
-            <DataGrid
-                Name="dgItemLentToCustomer"
-                Height="100"
-                AutoGenerateColumns="False"
-                CanUserDeleteRows="False"
-                SelectionChanged="dgItemLentToCustomer_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
-                    <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
-                    <DataGridTextColumn Binding="{Binding LastName}" Header="Last name" />
-                    <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
-                    <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
-                    <DataGridTextColumn Binding="{Binding State.Title}" Header="State" />
-                </DataGrid.Columns>
-            </DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="6*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <DataGrid
+            Name="dgItemLentToCustomer"
+            Height="100"
+            AutoGenerateColumns="False"
+            CanUserDeleteRows="False"
+            SelectionChanged="dgItemLentToCustomer_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CustomerID}" Header="CustomerID" />
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="First name" />
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Last name" />
+                <DataGridTextColumn Binding="{Binding ItemID}" Header="ItemID" />
+                <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
+                <DataGridTextColumn Binding="{Binding State.Title}" Header="State" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="center">
+            <Label Height="25">Customer:</Label>
+            <ComboBox
+                Name="cmbBoxCustomer"
+                Grid.Column="1"
+                Width="150"
+                Height="20"
+                Margin="5"
+                HorizontalAlignment="Left"
+                DisplayMemberPath="FirstName"
+                SelectedValuePath="CustomerID" />
+            <Label Height="25">Item:</Label>
+            <ComboBox
+                Name="cmbBoxItem"
+                Grid.Column="1"
+                Width="150"
+                Height="20"
+                Margin="5"
+                DisplayMemberPath="Title"
+                SelectedValuePath="ItemID" />
+            <Button
+                Name="btnAdd"
+                Grid.Column="1"
+                Width="75"
+                Height="20"
+                Margin="5"
+                HorizontalAlignment="Center"
+                Background="#ff6961"
+                Click="btnAdd_Click">
+                Add
+            </Button>
+            <Button
+                Name="btnRet"
+                Grid.Column="1"
+                Width="75"
+                Height="20"
+                Margin="10"
+                HorizontalAlignment="Center"
+                Background="#ff6961"
+                Click="btnRet_Click">
+                Return
+            </Button>
             <Button
                 Name="btnEdit"
+                Grid.Column="1"
                 Width="75"
                 Height="20"
                 Margin="10"
@@ -40,59 +89,22 @@
                 Click="btnEdit_Click">
                 Edit
             </Button>
-            <WrapPanel>
-                <Label Height="25">Customer:</Label>
-                <ComboBox
-                    Name="cmbBoxCustomer"
-                    Width="150"
-                    Height="20"
-                    Margin="5"
-                    HorizontalAlignment="Left"
-                    DisplayMemberPath="FirstName"
-                    SelectedValuePath="CustomerID" />
-                <Label Height="25">Item:</Label>
-                <ComboBox
-                    Name="cmbBoxItem"
-                    Width="150"
-                    Height="20"
-                    Margin="5"
-                    DisplayMemberPath="Title"
-                    SelectedValuePath="ItemID" />
-                <Button
-                    Name="btnAdd"
-                    Width="75"
-                    Height="20"
-                    Margin="5"
-                    HorizontalAlignment="Center"
-                    Background="#ff6961"
-                    Click="btnAdd_Click">
-                    Add
-                </Button>
-                <Button
-                    Name="btnRet"
-                    Width="75"
-                    Height="20"
-                    Margin="10"
-                    HorizontalAlignment="Center"
-                    Background="#ff6961"
-                    Click="btnRet_Click">
-                    Return
-                </Button>
-            </WrapPanel>
-            <DataGrid
-                Name="dgHistory"
-                Height="200"
-                AutoGenerateColumns="False"
-                CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding HistoryID}" Header="HistoryID" />
-                    <DataGridTextColumn Binding="{Binding FirstName}" Header="Firstname" />
-                    <DataGridTextColumn Binding="{Binding LastName}" Header="Lastname" />
-                    <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
-                    <DataGridTextColumn Binding="{Binding LoanedOn}" Header="Loaned on" />
-                    <DataGridTextColumn Binding="{Binding ReturnedOn}" Header="Returned on" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+        </WrapPanel>
+        <DataGrid
+            Name="dgHistory"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Height="200"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding HistoryID}" Header="HistoryID" />
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Firstname" />
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Lastname" />
+                <DataGridTextColumn Binding="{Binding Title}" Header="Item" />
+                <DataGridTextColumn Binding="{Binding LoanedOn}" Header="Loaned on" />
+                <DataGridTextColumn Binding="{Binding ReturnedOn}" Header="Returned on" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

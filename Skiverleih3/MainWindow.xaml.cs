@@ -53,9 +53,11 @@ namespace Skiverleih3
 
         private void txtBoxSearchForCustomer_TextChanged(object sender, TextChangedEventArgs e)
         {
+            /*
             var items = dataClass.GetItems();
             var filter = items.Where(items => items.Title.StartsWith(txtBoxSearchForCustomer.Text, StringComparison.CurrentCultureIgnoreCase));
             dgHistory.ItemsSource = filter;
+            */
         }
 
         private void btnRet_Click(object sender, RoutedEventArgs e)
